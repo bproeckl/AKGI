@@ -1,17 +1,11 @@
 from pprint import pprint
 import numpy as np
 
+sequ1 = "ACCGAAGTAC"
+sequ2 = "AGAGGTAC"
 LEFT = "--"
 UP = "||"
 DIAG = "\\"
-
-
-def listtostring(list):
-    string = ""
-    for e in list:
-        string += e
-
-    return string
 
 
 def dir(left, diag, up, x, y):
@@ -106,24 +100,23 @@ def needleman_backtrack(directions, sequ2, sequ1):
     seq2 = gen_sequenz[0]
     seq1 = seq1[::-1]
     seq2 = seq2[::-1]
-    seq1 = listtostring(seq1)
-    seq2 = listtostring(seq2)
     return seq1, seq2
 
 
-sequ1 = "ACCGAAGTAC"
-sequ2 = "AGAGGTAC"
 score, direction = needleman(sequ1, sequ2, match=3, mismatch=-2, gap=-3)
 pprint(score, indent=1, width=300)
 pprint(direction, indent=1, width=300)
-print(needleman_backtrack(direction, sequ1, sequ2), "\n")
+q, w = needleman_backtrack(direction, sequ1, sequ2)
+print("\n", q, "\n", w, "\n")
 
 score, direction = needleman("ACCGAAGTAC", "AGAGGTAC", match=1, mismatch=-4, gap=-1)
 pprint(score, indent=1, width=300)
 pprint(direction, indent=1, width=300)
-print(needleman_backtrack(direction, sequ1, sequ2), "\n")
+q, w = needleman_backtrack(direction, sequ1, sequ2)
+print("\n", q, "\n", w, "\n")
 
 score, direction = needleman("ACCGAAGTAC", "AGAGGTAC", match=2, mismatch=-5, gap=-3)
 pprint(score, indent=1, width=300)
 pprint(direction, indent=1, width=300)
-print(needleman_backtrack(direction, sequ1, sequ2), "\n")
+q, w = needleman_backtrack(direction, sequ1, sequ2)
+print("\n", q, "\n", w, "\n")
